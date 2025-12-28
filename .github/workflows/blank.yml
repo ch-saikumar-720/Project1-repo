@@ -40,4 +40,4 @@ jobs:
         run: echo "Running in $APP_ENV environment"
 
       - name: Print branch
-        run: echo "Branch selected: $APP_BRANCH"
+        run: echo "Branch selected"
