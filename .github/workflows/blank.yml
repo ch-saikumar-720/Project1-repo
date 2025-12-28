@@ -12,18 +12,18 @@ on:
           - test
           - prod
 
-      branch:
-        description: "Select the branch"
+      region:
+        description: "Select the region"
         type: choice
         required: true
         options:
-          - master
-          - main
-          - feature1
+          - us-east-1
+          - eu-west-1
+          - ap=southeast-1
 
 env:
   APP_ENV: ${{ inputs.environment }}
-  APP_BRANCH: ${{ inputs.branch }}
+  APP_REGION: ${{ inputs.region }}
 
 jobs:
   build:
@@ -37,7 +37,6 @@ jobs:
           ref: ${{ inputs.branch }}
 
       - name: Print environment
-        run: echo "Running in $APP_ENV environment"
-
-      - name: Print branch
-        run: echo "Branch selected"
+        run: |
+          echo "Running in $APP_ENV environment"
+          echo "Running in $APP_REGION region"
