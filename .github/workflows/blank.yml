@@ -1,5 +1,5 @@
 name: CI/CD Workflow
-
+run-name: Deployment in ${{ inputs.environment }} of region ${{ inputs.region }} by ${{ github.actor }}
 on:
   workflow_dispatch:
     inputs:
