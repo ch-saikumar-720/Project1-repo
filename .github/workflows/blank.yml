@@ -1,36 +1,41 @@
 name: CI/CD Workflow
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       environment:
-        description: Use dev,prod,test
+        description: "Use dev, test, prod"
         type: choice
-        options: 
+        required: true
+        options:
           - dev
           - test
           - prod
+
       branch:
-        description: Select the branch
+        description: "Select the branch"
         type: choice
         required: true
         options:
           - master
           - main
           - feature1
+
 env:
-  APP_ENV: ${{inputs.environment}}
-  APP_BRANCH: ${{inputs.branch}}
+  APP_ENV: ${{ inputs.environment }}
+  APP_BRANCH: ${{ inputs.branch }}
 
 jobs:
   build:
     name: CI/CD build
     runs-on: ubuntu-latest
+
     steps:
-      - name: code checkout
+      - name: Code checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ inputs.branch }}
+
       - name: Print environment
         run: echo "Running in $APP_ENV environment"
 
